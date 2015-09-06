@@ -1,0 +1,52 @@
+To start off
+
+	Health Bar - 20 Pts wins the round
+	Leftover health = end score of round
+	After 3 rounds, highest score wins
+		tiebreaker = the 2 winner
+
+		-Random deck
+			1 1 - 15 15
+			4 fancy ones types
+				S1-A Damage = opp attack
+				S2-A Damage = opp Def
+				S1-D Copy opp Def
+				S2-D Copy opp Att as Def (causes draw on round)
+
+				S3 - Your Attack/Defense = your Defense/Attack
+				S4: Defense of Defense card is S. Defense = Defense of Att card and Att + 1
+
+	-Each player throws down 2 cards, off and def
+		Off is compared to def and the difference = the dam (if greater)
+
+		Use Quill18's item system for the cards since he did something similar as his tutorial
+
+	
+	-Single player (AI Types: Off, Def, balanced... random choice)
+	-Multiplayer (2 players to start)
+
+		- Deal 6 cards per hand 30 card deck
+			- 2 play modes
+				- Play out entire hand before drawing
+				- Draw 2 more every time
+				
+				
+Future Ideas
+- Magic style cards
+- Races
+	- Humans cheaper but don't get as strong but have more abilities etc
+	- non humans have bigger numbers but not as special, etc.
+- Use the item system to make a database and an editor to add things to it.
+
+
+Order of things to do
+
+-Method for drawing cards (add deck[0] to hand and remove deck[0])
+
+
+
+
+
+
+-Build the deck dynamically
+	- Right now it builds it randomly, need to implement it from the deck
