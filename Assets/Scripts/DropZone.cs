@@ -13,40 +13,14 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     {
 
 
-        print(eventData.pointerDrag.name + " was dropped on " + gameObject.name);
-
-        if (gameObject.name == "Attack Drop")
-        {
-            print("Dropped on Attack and bool is " + attack);
-            if (!attack)
-            {
-                attack = true;
-
-                Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
-                if (d != null)
-                {
-                    d.parentToReturnTo = this.transform;
-                }
-            }
-        }
-
-        if (gameObject.name == "Defense Drop")
-        {
-            if (!defense)
-                defense = true;
+        //print(eventData.pointerDrag.name + " was dropped on " + gameObject.name);
+            //print("Dropped on Attack and bool is " + attack);
 
             Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
             if (d != null)
             {
                 d.parentToReturnTo = this.transform;
             }
-
-           
-            if (d != null)
-            {
-                d.parentToReturnTo = this.transform;
-            }
-        }
     }
     
     // Changes the placeholder parent to the drop zone that it's hovered over
@@ -59,10 +33,7 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
         if (d != null)
         {
-            if (gameObject.name == "Attack Drop" && attack == true)
-            {
-                d.placeholderParent = this.transform;
-            }
+            d.placeholderParent = this.transform;
         }
     }
 
