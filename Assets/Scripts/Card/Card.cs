@@ -32,7 +32,6 @@ public class Card : MonoBehaviour
         Text[] textArray = GetComponentsInChildren<Text>();
         foreach (Text field in textArray)
         {
-            print("I'm in the loop");
             if (field.name == "Attack")
             {
                 attackText = field;

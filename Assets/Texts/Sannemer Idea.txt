@@ -16,11 +16,6 @@ To start off
 				S3 - Your Attack/Defense = your Defense/Attack
 				S4: Defense of Defense card is S. Defense = Defense of Att card and Att + 1
 
-	-Each player throws down 2 cards, off and def
-		Off is compared to def and the difference = the dam (if greater)
-
-		Use Quill18's item system for the cards since he did something similar as his tutorial
-
 	
 	-Single player (AI Types: Off, Def, balanced... random choice)
 	-Multiplayer (2 players to start)
@@ -29,24 +24,35 @@ To start off
 			- 2 play modes
 				- Play out entire hand before drawing
 				- Draw 2 more every time
+
+Current Bugs/TODO list:
+
+Have the AI make 2 random cards and play the best one in each spot. (placeholder for real AI stuff)
+
+GUI stuff
+	health
+	score
+	round #
+	Popup windows
+		Game Over
+		After each hand
+
+			
+Short term ideas:
+Animation after the hand is over?			
 				
 				
 Future Ideas
+
 - Magic style cards
 - Races
 	- Humans cheaper but don't get as strong but have more abilities etc
 	- non humans have bigger numbers but not as special, etc.
 - Use the item system to make a database and an editor to add things to it.
 
-
 Order of things to do
 
 -Method for drawing cards (add deck[0] to hand and remove deck[0])
-
-
-
-
-
 
 -Build the deck dynamically
 	- Right now it builds it randomly, need to implement it from the deck

@@ -6,9 +6,6 @@ using System;
 public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
 
-    bool attack = false;
-    bool defense = false;
-
     public void OnDrop(PointerEventData eventData)
     {
 
