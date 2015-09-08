@@ -3,15 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
 
     [Header("Health and Score")]
     public int startingHealth = 20;
-    [SerializeField] private int round;
-    [SerializeField] private int myHealth;
-    [SerializeField] private int oppHealth;
-    [SerializeField] private int myScore;
-    [SerializeField] private int oppScore;
+    [SerializeField]
+    private int round;
+    [SerializeField]
+    private int myHealth;
+    [SerializeField]
+    private int oppHealth;
+    [SerializeField]
+    private int myScore;
+    [SerializeField]
+    private int oppScore;
 
 
     [Header("Game Info")]
@@ -44,15 +50,18 @@ public class GameController : MonoBehaviour {
     private int oppAtt;
     private int oppDef;
     private Console console;
+    private bool listeningForClick;
 
     void Start()
     {
         // Initialize the deck and hand so we have something to add to
         deck = new List<Vector2>();
         hand = new List<Vector2>();
-        
+
 
         console = GameObject.FindObjectOfType<Console>() as Console;
+        cardBack1.SetActive(true);
+        cardBack2.SetActive(true);
 
 
         // Start a new round
@@ -102,7 +111,7 @@ public class GameController : MonoBehaviour {
             // Build the deck and shuffle
             hand = Deal(deck);
 
-            message = string.Format("You did{0} damage and received {1} damage. \nThe score is now {2} to {3}", attDam, defDam, myScore, oppScore);
+            message = string.Format("You did {0} damage and received {1} damage. \nThe score is now {2} to {3}", attDam, defDam, myScore, oppScore);
             console.Display(message);
             console.ClearButtons();
         }
@@ -111,7 +120,7 @@ public class GameController : MonoBehaviour {
             button.Add("Again!");
             myScore += MYSCORE;
             oppScore += OPPSCORE;
-            message = string.Format("You did{0} damage and received {1} damage. \nThe score is now {2} to {3}", attDam, defDam, myScore, oppScore);
+            message = string.Format("You did {0} damage and received {1} damage. \nThe score is now {2} to {3}", attDam, defDam, myScore, oppScore);
             string msg;
 
             //Debug.Log("Popup saying game over and winner!");
@@ -166,7 +175,7 @@ public class GameController : MonoBehaviour {
         {
             random = Random.Range(0, deck.Count);
             tempDeck.Add(deck[random]);
-            deck.RemoveAt(random);            
+            deck.RemoveAt(random);
         }
         return tempDeck;
     }
@@ -180,7 +189,7 @@ public class GameController : MonoBehaviour {
     }
 
 
-    public List<Vector2> Deal(List<Vector2>deck)
+    public List<Vector2> Deal(List<Vector2> deck)
     {
         var temp = new List<Vector2>();
         Card current;
@@ -210,7 +219,7 @@ public class GameController : MonoBehaviour {
 
 
     public void Play()
-    {   
+    {
         if (attackPanel.transform.childCount == 0 || defensePanel.transform.childCount == 0)
         {
             Debug.Log("Popup about proper number of cards");
@@ -260,8 +269,11 @@ public class GameController : MonoBehaviour {
 
         //Debug.Log("Popup to say what happened at the end of that hand.. animation would be nice too???");
 
-        Destroy(attackPanel.transform.GetChild(0).gameObject);
-        Destroy(defensePanel.transform.GetChild(0).gameObject);
+        // Turn on listening for click and turn the card backs off
+        listeningForClick = true;
+        cardBack1.SetActive(false);
+        cardBack2.SetActive(false);
+        
     }
 
 
@@ -329,7 +341,7 @@ public class GameController : MonoBehaviour {
             }
             if (field.name == "Attack")
             {
-                field.text = oppCards[random].y.ToString();                
+                field.text = oppCards[random].y.ToString();
             }
         }
         oppCards.RemoveAt(random);
@@ -348,4 +360,23 @@ public class GameController : MonoBehaviour {
 
         return AIhand;
     }
+
+    void Update()
+    {
+
+        // when listening for clicks is on it will listen for a click (original I know) and then turn card backs back on and calls startRound
+        if (listeningForClick)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                listeningForClick = false;
+                cardBack1.SetActive(true);
+                cardBack2.SetActive(true);
+                Destroy(attackPanel.transform.GetChild(0).gameObject);
+                Destroy(defensePanel.transform.GetChild(0).gameObject);
+            }
+        }
+    }
 }
+
+
