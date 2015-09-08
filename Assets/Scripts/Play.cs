@@ -41,7 +41,7 @@ public class Play : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         if (eventData.pointerDrag == null)                                  // if not dragging you can't do anything so return immediately
             return;
 
-        Debug.Log("On Point Enter called");
+        //Debug.Log("On Point Enter called");
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -54,7 +54,7 @@ public class Play : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         else
             occupied = false;
 
-        print("On Pointer Exit");
+        //print("On Pointer Exit");
         Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
         if (d != null && d.placeholderParent == this.transform)             
             d.placeholderParent = d.parentToReturnTo;                       

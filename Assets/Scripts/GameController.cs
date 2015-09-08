@@ -24,8 +24,13 @@ public class GameController : MonoBehaviour {
     public GameObject defensePanel;
     public GameObject oppAttPanel;
     public GameObject oppDefPanel;
+
     [Header("Prefabs")]
     public GameObject cardPrefab;
+    public Card oppAttCard;
+    public Card oppDefCard;
+    public GameObject cardBack1;
+    public GameObject cardBack2;
 
     [HideInInspector]
     public List<Vector2> deck;
@@ -38,17 +43,20 @@ public class GameController : MonoBehaviour {
     private int myDef;
     private int oppAtt;
     private int oppDef;
+    private Console console;
 
     void Start()
     {
         // Initialize the deck and hand so we have something to add to
         deck = new List<Vector2>();
         hand = new List<Vector2>();
+        
+
+        console = GameObject.FindObjectOfType<Console>() as Console;
+
 
         // Start a new round
-        round = 1;
-        StartRound();
-
+        round = 0;
 
         //foreach (Vector2 vector in hand)
         //{
@@ -59,9 +67,25 @@ public class GameController : MonoBehaviour {
 
     // This method will be used to initialize a new round
     // Will update the score, reset the health, reshuffle and redeal
-    public void StartRound(int MYSCORE = 0, int OPPSCORE = 0)
+    public void StartRound(int MYSCORE = 0, int OPPSCORE = 0, int attDam = 0, int defDam = 0)
     {
-        if (round <= 3)
+        string message;
+        List<string> button = new List<string>();
+
+        if (round == 0)
+        {
+            round++;
+            message = "Play your cards and press the go button";
+            deck = BuildDeck();
+            hand = Deal(deck);
+            console.Display(message);
+            console.ClearButtons();
+            myHealth = startingHealth;
+            oppHealth = startingHealth;
+            myScore = 0;
+            oppScore = 0;
+        }
+        else if (round <= 3 && round != 0)
         {
             if (MYSCORE < 0)
                 MYSCORE = 0;
@@ -76,14 +100,43 @@ public class GameController : MonoBehaviour {
             oppHealth = startingHealth;
 
             // Build the deck and shuffle
-            deck = BuildDeck();
             hand = Deal(deck);
+
+            message = string.Format("You did{0} damage and received {1} damage. \nThe score is now {2} to {3}", attDam, defDam, myScore, oppScore);
+            console.Display(message);
+            console.ClearButtons();
         }
         else
         {
-            Debug.Log("Popup saying game over and winner!");
-        } 
+            button.Add("Again!");
+            myScore += MYSCORE;
+            oppScore += OPPSCORE;
+            message = string.Format("You did{0} damage and received {1} damage. \nThe score is now {2} to {3}", attDam, defDam, myScore, oppScore);
+            string msg;
 
+            //Debug.Log("Popup saying game over and winner!");
+            if (myScore > oppScore)
+            {
+                msg = "Game over, you Win! \n Press the button to play again.";
+            }
+            else if (myScore < oppScore)
+            {
+                msg = "Well played, but you lost this time. \nTry Again.";
+            }
+            else if (myScore == oppScore)
+            {
+                msg = "Well, you tied, and I don't know how to handle that yet, so push the button to play again.";
+            }
+            else
+            {
+                msg = "You didn't win lose or draw... stop cheating.";
+            }
+
+            message = message + "\n" + msg;
+            console.Display(message, button);
+            round = 0;
+            console.buttons[0].onClick.AddListener(() => StartRound());
+        }
     }
 
 
@@ -164,7 +217,7 @@ public class GameController : MonoBehaviour {
             return;
         }
 
-        Debug.Log("Play called");
+        //Debug.Log("Play called");
         GetValues();
 
         var attDiff = myAtt - oppDef;
@@ -176,11 +229,20 @@ public class GameController : MonoBehaviour {
         {
             oppHealth -= attDiff;
         }
+        else
+            attDiff = 0;
         if (defDiff > 0)
         {
             myHealth -= defDiff;
         }
+        else
+            defDiff = 0;
 
+        string message = string.Format("You did {0} damage and received {1} damage. \nThe score is now {2} to {3}", attDiff, defDiff, myScore, oppScore);
+        console.Display(message);
+
+
+        Debug.Log(string.Format("oppHealth = {0}, myHealth = {1}, childCount = {2}", oppHealth, myHealth, handPanel.transform.childCount));
 
         if (oppHealth <= 0 || myHealth <= 0 || handPanel.transform.childCount <= 1)
         {
@@ -193,16 +255,13 @@ public class GameController : MonoBehaviour {
                 Destroy(handPanel.transform.GetChild(i).gameObject);
             }
 
-            StartRound(myHealth, oppHealth);
+            StartRound(myHealth, oppHealth, attDiff, defDiff);
         }
 
-        Debug.Log("Popup to say what happened at the end of that hand.. animation would be nice too???");
+        //Debug.Log("Popup to say what happened at the end of that hand.. animation would be nice too???");
 
         Destroy(attackPanel.transform.GetChild(0).gameObject);
         Destroy(defensePanel.transform.GetChild(0).gameObject);
-        
-
-
     }
 
 
@@ -219,6 +278,9 @@ public class GameController : MonoBehaviour {
         var defArray = defensePanel.GetComponentsInChildren<Text>();
         var oppAttArray = oppAttPanel.GetComponentsInChildren<Text>();
         var oppDefArray = oppDefPanel.GetComponentsInChildren<Text>();
+
+        var oppCards = buildAIDeck();
+        int random;
 
         foreach (Text field in attArray)
         {
@@ -238,25 +300,52 @@ public class GameController : MonoBehaviour {
             }
         }
 
+        random = (int)Random.Range(0, oppCards.Count);
 
         foreach (Text field in oppAttArray)
         {
             if (field.name == "Attack")
             {
-                oppAtt = int.Parse(field.text);
+                oppAtt = (int)oppCards[random].x;
+                field.text = oppAtt.ToString();
+            }
+
+            if (field.name == "Defense")
+            {
+                field.text = oppCards[random].y.ToString();
             }
         }
+        oppCards.RemoveAt(random);
 
+        random = Random.Range(0, oppCards.Count);
 
         foreach (Text field in oppDefArray)
         {
             if (field.name == "Defense")
             {
-                oppDef = int.Parse(field.text);
+                Debug.Log(string.Format("oppCards.Count = {0}, and random = {1}", oppCards.Count, random));
+                oppDef = (int)oppCards[random].y;
+                field.text = oppDef.ToString();
+            }
+            if (field.name == "Attack")
+            {
+                field.text = oppCards[random].y.ToString();                
             }
         }
+        oppCards.RemoveAt(random);
 
 
-       // Debug.Log(string.Format("myAtt = {0}, myDef = {1}, oppAtt = {2}, oppDef = {3}", myAtt, myDef, oppAtt, oppDef));
+        // Debug.Log(string.Format("myAtt = {0}, myDef = {1}, oppAtt = {2}, oppDef = {3}", myAtt, myDef, oppAtt, oppDef));
+    }
+
+    List<Vector2> buildAIDeck()
+    {
+        List<Vector2> AIhand = new List<Vector2>();
+        for (int i = 0; i < handSize; i++)
+        {
+            AIhand.Add(new Vector2((int)Random.Range(1, 16), (int)Random.Range(1, 16)));
+        }
+
+        return AIhand;
     }
 }

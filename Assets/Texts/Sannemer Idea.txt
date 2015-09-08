@@ -9,7 +9,8 @@ To start off
 			1 1 - 15 15
 			4 fancy ones types
 				S1-A Damage = opp attack
-				S2-A Damage = opp Def
+				S2-A Damage = opp Def    ----- Probably won't work
+					Defense = 5 (something) + 5 to attack
 				S1-D Copy opp Def
 				S2-D Copy opp Att as Def (causes draw on round)
 

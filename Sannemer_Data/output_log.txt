@@ -1,0 +1,22 @@
+Initialize engine version: 5.1.2f1 (afd2369b692a)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 720 (ID=0x1286)
+    Vendor:   NVIDIA
+    VRAM:     1994 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\robof_000\Documents\Games\Sannemer\Sannemer_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\robof_000\Documents\Games\Sannemer\Sannemer_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\robof_000\Documents\Games\Sannemer\Sannemer_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\robof_000\Documents\Games\Sannemer\Sannemer_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\robof_000\Documents\Games\Sannemer\Sannemer_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\robof_000\Documents\Games\Sannemer\Sannemer_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\robof_000\Documents\Games\Sannemer\Sannemer_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\robof_000\Documents\Games\Sannemer\Sannemer_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\robof_000\Documents\Games\Sannemer\Sannemer_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\robof_000\Documents\Games\Sannemer\Sannemer_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.045 seconds
+desktop: 1360x768 60Hz; virtual: 2960x1267 at 0,-499
+<RI> Initializing input.
+<RI> Input initialized.
