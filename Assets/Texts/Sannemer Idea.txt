@@ -28,15 +28,19 @@ To start off
 
 Current Bugs/TODO list:
 
-Have the AI make 2 random cards and play the best one in each spot. (placeholder for real AI stuff)
+give the AI better abilities
+	build deck and deal same as for player so they are on equal footing
+	Random of 3 things cad do
+		Play the strongest card
+		Play the weakest card
+		Play a middle card
 
-GUI stuff
-	health
-	score
-	round #
-	Popup windows
-		Game Over
-		After each hand
+	Ways to deal with ties
+		Before it comes to a tie the choice is made to be offense or defensive so ties never technically happen as the card is pulled before the tie happens
+Work on making it multi player (Photon initialization, photonnetwork.instantiate, etc, offline mode)
+Get the Health bars and name fields set up
+Menu button for the console
+Get the camera to zoom in on the console when the menu is brought up
 
 			
 Short term ideas:

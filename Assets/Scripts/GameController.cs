@@ -24,12 +24,14 @@ public class GameController : MonoBehaviour
     public int handSize = 6;
     public int deckSize = 30;
 
+
     [Header("Fields")]
     public GameObject handPanel;
     public GameObject attackPanel;
     public GameObject defensePanel;
     public GameObject oppAttPanel;
     public GameObject oppDefPanel;
+
 
     [Header("Prefabs")]
     public GameObject cardPrefab;
@@ -38,6 +40,7 @@ public class GameController : MonoBehaviour
     public GameObject cardBack1;
     public GameObject cardBack2;
 
+
     [HideInInspector]
     public List<Vector2> deck;
     [HideInInspector]
@@ -45,12 +48,14 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public Card card;
 
+
     private int myAtt;
     private int myDef;
     private int oppAtt;
     private int oppDef;
     private Console console;
     private bool listeningForClick;
+    private int typesOfCards = 17;
 
     void Start()
     {
@@ -159,10 +164,10 @@ public class GameController : MonoBehaviour
         int random;
 
 
-        // TODO change these to 17-19 to include special cards
-        for (int i = 1; i <= 15; i++)
+       // the variable typesOfCards holds how many kinds of cards there are (right now it's 15 #s and 2 specials)
+        for (int i = 1; i <= typesOfCards; i++)
         {
-            for (int j = 1; j <= 15; j++)
+            for (int j = 1; j <= typesOfCards; j++)
             {
                 temp = new Vector2(i, j);
                 deck.Add(temp);
@@ -279,72 +284,153 @@ public class GameController : MonoBehaviour
 
     public void GetValues()
     {
+        // These are for determining if you or opponent will continue to figure out values (in case of specials)
+        // This is the most cumbersome code I've written for this so far... would love to find a GOOD way to do this,
+        // assuming that this way works at all that is.
+        bool myAttDone = false;
+        bool myDefDone = false;
+        bool oppAttDone = false;
+        bool oppDefDone = false;
 
-        // This feels Hacky!!!
         // Initialize attack and defense numbers of both player and opponent
-        //attackPanel = GameObject.FindGameObjectWithTag("Attack Panel");
-        //defensePanel = GameObject.FindGameObjectWithTag("Defense Panel");
-        //Debug.Log(defensePanel);
-        //Debug.Log(attackPanel);
-        var attArray = attackPanel.GetComponentsInChildren<Text>();
-        var defArray = defensePanel.GetComponentsInChildren<Text>();
-        var oppAttArray = oppAttPanel.GetComponentsInChildren<Text>();
-        var oppDefArray = oppDefPanel.GetComponentsInChildren<Text>();
+        Debug.Log(attackPanel.GetComponentInChildren<Card>().attack);
+        Debug.Log(defensePanel.GetComponentInChildren<Card>().defense);
+        Debug.Log(oppAttPanel.GetComponentInChildren<Card>().attack);
+        Debug.Log(oppDefPanel.GetComponentInChildren<Card>().defense);
+        myAtt = attackPanel.GetComponentInChildren<Card>().attack;
+        myDef = defensePanel.GetComponentInChildren<Card>().defense;
 
-        var oppCards = buildAIDeck();
-        int random;
+        // Right now I always have these cards available so there is no need to check to see if this is right.  When I instantiate this later
+        // I can uncomment and fix this.
+        //oppAtt = oppAttPanel.GetComponentInChildren<Card>().attack;
+        //oppDef = oppDefPanel.GetComponentInChildren<Card>().defense;
 
-        foreach (Text field in attArray)
-        {
-            if (field.name == "Attack")
+        oppAtt = oppAttCard.attack;
+        oppDef = oppDefCard.defense;
+
+        // Covers the 'A' Case
+        if (myAtt == 16 && !myAttDone)
+        { 
+            if (oppAtt < 16)
             {
-                //Debug.Log(field.text);
-                myAtt = int.Parse(field.text);
+                myAtt = oppAtt;
+            }
+            // If both players play 'A' (Only need to check once)
+            else if (oppAtt == 16)
+            {
+                myAtt = 1;
+                oppAtt = 1;
+                oppAttDone = true;
+            }
+            // If one player plays 'A' and the other plays 'B'
+            else if (oppAtt == 17)
+            {
+                myAtt = card.S2BaseAttack;
+
+                if (myDef < 16)
+                {
+                    myDef += card.S2PlusDefense;
+                    myDefDone = true;
+                }
+                else
+                {
+                    myDef = 1;
+                    myDefDone = true;
+                }
+
             }
         }
 
 
-        foreach (Text field in defArray)
+        if (myAtt == 17 && !myAttDone)
         {
-            if (field.name == "Defense")
+            myAtt = card.S2BaseAttack;
+
+            if (myDef < 16)
             {
-                myDef = int.Parse(field.text);
+                myDef += card.S2PlusDefense;
+                myDefDone = true;
+            }
+            else
+            {
+                myDef = 1;
+                myDefDone = true;
+            }
+
+        }
+
+        if (oppAtt == 16 && !oppAttDone)
+        {
+            if (myAtt < 16)
+            {
+                oppAtt = myAtt;
+            }
+            else if (myAtt == 17)
+            {
+                oppAtt = card.S2BaseAttack;
+                oppDef += card.S2PlusDefense;
             }
         }
 
-        random = (int)Random.Range(0, oppCards.Count);
-
-        foreach (Text field in oppAttArray)
+        if (oppAtt == 17 && !oppAttDone)
         {
-            if (field.name == "Attack")
-            {
-                oppAtt = (int)oppCards[random].x;
-                field.text = oppAtt.ToString();
-            }
+            oppAtt = card.S2BaseAttack;
 
-            if (field.name == "Defense")
+            if (oppDef < 16)
             {
-                field.text = oppCards[random].y.ToString();
+                oppDef += card.S2PlusDefense;
+                oppDefDone = true;
+            }
+            else
+            {
+                oppDef = 1;
+                oppDefDone = true;
             }
         }
-        oppCards.RemoveAt(random);
 
-        random = Random.Range(0, oppCards.Count);
 
-        foreach (Text field in oppDefArray)
+        if (myDef == 16 && !myDefDone)
         {
-            if (field.name == "Defense")
+            if (oppDef < 16)
             {
-                Debug.Log(string.Format("oppCards.Count = {0}, and random = {1}", oppCards.Count, random));
-                oppDef = (int)oppCards[random].y;
-                field.text = oppDef.ToString();
+                myDef = oppDef;
             }
-            if (field.name == "Attack")
+            // If both players play 'A' (Only need to check once)
+            else if (oppDef == 16)
             {
-                field.text = oppCards[random].y.ToString();
+                myDef = 1;
+                oppDef = 1;
+                oppDefDone = true;
+            }
+            // If one player plays 'A' and the other plays 'B'
+            else if (oppDef == 17)
+            {
+                myDef = oppDef;
             }
         }
-        oppCards.RemoveAt(random);
+
+        if (myDef == 17)
+        {
+            myDef = oppAtt;
+        }
+
+        if (oppDef == 16)
+        {
+            if (oppDef < 16)
+            {
+                oppDef = myDef;
+            }
+
+            // If one player plays 'A' and the other plays 'B'
+            else if (oppDef == 17)
+            {
+                oppDef = myDef;
+            }
+        }
+        if (oppDef == 17)
+        {
+            oppDef = myAtt;
+        }
 
 
         // Debug.Log(string.Format("myAtt = {0}, myDef = {1}, oppAtt = {2}, oppDef = {3}", myAtt, myDef, oppAtt, oppDef));

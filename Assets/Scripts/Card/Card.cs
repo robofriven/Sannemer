@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class Card : MonoBehaviour
@@ -11,6 +11,10 @@ public class Card : MonoBehaviour
     public string attackFlavor;
     public string defenseFlavor;
 
+    [Header("Special Card Variables")]
+    public int S2BaseAttack;
+    public int S2PlusDefense;
+
     // private variables that won't show in inspector
     private Text attackText;
     private Text defenseText;
@@ -19,11 +23,9 @@ public class Card : MonoBehaviour
 
 
     // Possible additions
-    // sprite (image)
     // value
     // Maybe collection/set number
     // rarity
-    // classes/races
 
     void Awake()
     {
@@ -54,14 +56,17 @@ public class Card : MonoBehaviour
 
             if (stats.x < 16)
             {
+                attack = (int)stats.x;
                 attackText.text = stats.x.ToString();
             }
             else if (stats.x == 16)
             {
+                attack = (int)stats.x;
                 attackText.text = "A";
             }
             else if (stats.x == 17)
             {
+                attack = (int)stats.x;
                 attackText.text = "B";
             }
             else
@@ -73,14 +78,17 @@ public class Card : MonoBehaviour
 
             if (stats.y < 16)
             {
+                defense = (int)stats.y;
                 defenseText.text = stats.y.ToString();
             }
             else if (stats.y == 16)
             {
+                defense = (int)stats.y;
                 defenseText.text = "A";
             }
             else if (stats.y == 17)
             {
+                defense = (int)stats.y;
                 defenseText.text = "B";
             }
             else

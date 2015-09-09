@@ -42,7 +42,7 @@ public class Console : MonoBehaviour
         {
             for (int i = 0; i < buttonNames.Count; i++)
             {
-                Debug.Log(buttonNames.Count);
+                //Debug.Log(buttonNames.Count);
 
                 // instantiate the buttons
                 buttons.Add(GameObject.Instantiate<Button>(button));

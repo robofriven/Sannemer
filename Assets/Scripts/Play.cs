@@ -13,8 +13,8 @@ public class Play : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log(occupied);
-        Debug.Log(this.transform.childCount);
+        //Debug.Log(occupied);
+        //Debug.Log(this.transform.childCount);
         Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
 
         if (this.transform.childCount != 0)
