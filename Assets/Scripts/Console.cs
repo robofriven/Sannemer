@@ -29,8 +29,8 @@ public class Console : MonoBehaviour
 
         var names = new List<string> { "Start!" };
 
-        Display(message, names);
-        buttons[0].onClick.AddListener(() => buttonHandler.StartGame());
+        //Display(message, names);
+        //buttons[0].onClick.AddListener(() => buttonHandler.StartGame());
     }
 
 

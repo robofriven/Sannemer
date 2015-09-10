@@ -47,12 +47,16 @@ public class GameController : MonoBehaviour
     public List<Vector2> hand;
     [HideInInspector]
     public Card card;
+    private List<Vector2> AIDeck;
+    private List<Vector2> AIHand;
 
 
     private int myAtt;
     private int myDef;
     private int oppAtt;
+    private Vector2 oppAttValues;
     private int oppDef;
+    private Vector2 oppDefValues;
     private Console console;
     private bool listeningForClick;
     private int typesOfCards = 17;
@@ -62,6 +66,8 @@ public class GameController : MonoBehaviour
         // Initialize the deck and hand so we have something to add to
         deck = new List<Vector2>();
         hand = new List<Vector2>();
+        AIDeck = new List<Vector2>();
+        AIHand = new List<Vector2>();
 
 
         console = GameObject.FindObjectOfType<Console>() as Console;
@@ -86,12 +92,14 @@ public class GameController : MonoBehaviour
         string message;
         List<string> button = new List<string>();
 
+        // Initialize game starting variables
         if (round == 0)
         {
             round++;
             message = "Play your cards and press the go button";
             deck = BuildDeck();
             hand = Deal(deck);
+            AIInit();
             console.Display(message);
             console.ClearButtons();
             myHealth = startingHealth;
@@ -115,6 +123,7 @@ public class GameController : MonoBehaviour
 
             // Build the deck and shuffle
             hand = Deal(deck);
+            AIHand = Deal(AIDeck);
 
             message = string.Format("You did {0} damage and received {1} damage. \nThe score is now {2} to {3}", attDam, defDam, myScore, oppScore);
             console.Display(message);
@@ -209,7 +218,7 @@ public class GameController : MonoBehaviour
             //  TODO Change this to PhotonNetwork.Instantiate???
             current = GameObject.Instantiate(cardPrefab).GetComponent<Card>();
             current.transform.SetParent(handPanel.transform);
-            current.AssignCard(temp[i]);
+            //current.AssignCard(temp[i]);
         }
 
         return temp;
@@ -436,17 +445,6 @@ public class GameController : MonoBehaviour
         // Debug.Log(string.Format("myAtt = {0}, myDef = {1}, oppAtt = {2}, oppDef = {3}", myAtt, myDef, oppAtt, oppDef));
     }
 
-    List<Vector2> buildAIDeck()
-    {
-        List<Vector2> AIhand = new List<Vector2>();
-        for (int i = 0; i < handSize; i++)
-        {
-            AIhand.Add(new Vector2((int)Random.Range(1, 16), (int)Random.Range(1, 16)));
-        }
-
-        return AIhand;
-    }
-
     void Update()
     {
 
@@ -462,6 +460,168 @@ public class GameController : MonoBehaviour
                 Destroy(defensePanel.transform.GetChild(0).gameObject);
             }
         }
+    }
+
+
+    // Initializes AI (builds the deck, deals the hand, sets the attack/defense bias and orders the hand
+    private void AIInit()
+    {
+        AIDeck = BuildDeck();
+        AIHand = Deal(AIDeck);
+
+        // Decide whether it will be attack or Defense biased
+        var random = Random.Range(0, 2);
+        print("Random number is " + random);
+        var bias = string.Empty;
+
+        if (random == 0)
+        {
+            bias = "attack";
+        }
+        if (random == 1)
+        {
+            bias = "defense";
+        }
+        else
+        {
+            Debug.Log("Something screwed up randomly!");
+            throw new System.NotImplementedException();
+        }
+
+        AIHand = Order(bias);
+    }
+    private Vector2[] AIFindPlay()
+    {
+        var random = Random.Range(0, 2);
+        oppAttValues = Vector2.zero;
+        oppDefValues = Vector2.zero;
+
+
+        switch (random)
+        {
+            // Style = best
+            case 0:
+                if (AIHand[0] == AIHand[1])
+                {
+                    oppDefValues = AIHand[1];
+                    oppAttValues = AIHand[0];
+                }
+                else if (AIHand[0].x > AIHand[1].x)
+                {
+                    oppAttValues = AIHand[0];
+                    AIHand.RemoveAt(0);
+                }
+                else if (AIHand[0].x < AIHand[1].x || AIHand[0].y > AIHand[1].y)
+                {
+                    oppAttValues = AIHand[1];
+                    oppDefValues = AIHand[0];
+                }
+                else
+                {
+                    oppAttValues = AIHand[0];
+                    oppDefValues = AIHand[1];
+                }
+                AIHand.RemoveAt(0);
+                AIHand.RemoveAt(1);
+                break;
+
+            // Style = Worst
+            case 1:
+                if (AIHand[AIHand.Count] == AIHand[AIHand.Count - 1])
+                {
+                    oppDefValues = AIHand[AIHand.Count - 1];
+                    oppAttValues = AIHand[AIHand.Count];
+                }
+                else if (AIHand[AIHand.Count].x < AIHand[AIHand.Count - 1].x)
+                {
+                    oppAttValues = AIHand[AIHand.Count];
+                    AIHand.RemoveAt(AIHand.Count);
+                }
+                else if (AIHand[AIHand.Count].x > AIHand[AIHand.Count - 1].x || AIHand[AIHand.Count].y < AIHand[AIHand.Count - 1].y)
+                {
+                    oppAttValues = AIHand[AIHand.Count - 1];
+                    oppDefValues = AIHand[AIHand.Count];
+                }
+                else
+                {
+                    oppAttValues = AIHand[AIHand.Count];
+                    oppDefValues = AIHand[AIHand.Count - 1];
+                }
+                AIHand.RemoveAt(AIHand.Count);
+                AIHand.RemoveAt(AIHand.Count);
+                break;
+            default:
+                Debug.Log("Something screwed up randomly!");
+                throw new System.NotImplementedException();
+        }
+
+        var play = new Vector2[2] { oppAttValues, oppDefValues };
+        return play;
+    }
+
+   public List<Vector2> Order(string bias)
+    {
+        Vector2 tmpAtt = new Vector2();
+        Vector2 tmpDef = new Vector2();
+        List<Vector2> tmpHand = new List<Vector2>();
+
+        if (bias == "attack")
+        {
+            while (AIHand.Count > 0)
+            {
+                foreach (Vector2 card in AIHand)
+                {
+                    if (card.x > tmpAtt.x)
+                    {
+                        tmpAtt = card;
+                    }
+                }
+
+                tmpHand.Add(tmpAtt);
+                AIHand.Remove(tmpAtt);
+
+                foreach (Vector2 card in AIHand)
+                {
+                    if (card.y > tmpDef.y)
+                    {
+                        tmpDef = card;
+                    }
+                }
+                tmpHand.Add(tmpDef);
+                AIHand.Remove(tmpDef);
+            }
+        }
+        else if (bias == "defense")
+        {
+            while (AIHand.Count > 0)
+            {
+                foreach (Vector2 card in AIHand)
+                {
+                    if (card.y > tmpDef.y)
+                    {
+                        tmpDef = card;
+                    }
+                }
+                tmpHand.Add(tmpDef);
+                AIHand.Remove(tmpDef);
+
+                foreach (Vector2 card in AIHand)
+                {
+                    if (card.x > tmpAtt.x)
+                    {
+                        tmpAtt = card;
+                    }
+                }
+                tmpHand.Add(tmpAtt);
+                AIHand.Remove(tmpAtt);
+            }
+        }
+        else
+        {
+            Debug.Log("Determine is broke");
+            throw new System.NotImplementedException();
+        }
+        return tmpHand;
     }
 }
 

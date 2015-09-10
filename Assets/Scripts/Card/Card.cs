@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class Card : MonoBehaviour
 {
     [Header("Card Stats")]
-    new string name;
     public int attack;
     public int defense;
     public string attackFlavor;
@@ -47,55 +46,11 @@ public class Card : MonoBehaviour
         }
     }
 
-    public void AssignCard(Vector2 stats)
+    public void BuildCard(int attack, int defense)
     {
-
-
-        if (attackText != null && defenseText != null)
-        {
-
-            if (stats.x < 16)
-            {
-                attack = (int)stats.x;
-                attackText.text = stats.x.ToString();
-            }
-            else if (stats.x == 16)
-            {
-                attack = (int)stats.x;
-                attackText.text = "A";
-            }
-            else if (stats.x == 17)
-            {
-                attack = (int)stats.x;
-                attackText.text = "B";
-            }
-            else
-            {
-                Debug.Log(string.Format("X failed, Vector is ({0}, {1})", stats.x, stats.y));
-                throw new System.NotImplementedException();
-            }
-
-
-            if (stats.y < 16)
-            {
-                defense = (int)stats.y;
-                defenseText.text = stats.y.ToString();
-            }
-            else if (stats.y == 16)
-            {
-                defense = (int)stats.y;
-                defenseText.text = "A";
-            }
-            else if (stats.y == 17)
-            {
-                defense = (int)stats.y;
-                defenseText.text = "B";
-            }
-            else
-            {
-                Debug.Log(string.Format("Y failed, Vector is ({0}, {1})", stats.x, stats.y));
-                throw new System.NotImplementedException();
-            }
-        }
+        this.attack = attack;
+        attackText.text = attack.ToString();
+        this.defense = defense;
+        defenseText.text = defense.ToString();
     }
 }
