@@ -16,6 +16,8 @@ To start off
 
 				S3 - Your Attack/Defense = your Defense/Attack
 				S4: Defense of Defense card is S. Defense = Defense of Att card and Att + 1
+				S5: Swap offense and defense values on opp card (1/15 turns 15/1)
+
 
 	
 	-Single player (AI Types: Off, Def, balanced... random choice)
