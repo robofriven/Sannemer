@@ -30,12 +30,8 @@ To start off
 
 Current Bugs/TODO list:
 
-give the AI better abilities
-	build deck and deal same as for player so they are on equal footing
-	Random of 3 things cad do
-		Play the strongest card
-		Play the weakest card
-		Play a middle card
+- Doesnt clear score at the end of the game
+
 
 	Ways to deal with ties
 		Before it comes to a tie the choice is made to be offense or defensive so ties never technically happen as the card is pulled before the tie happens
@@ -51,15 +47,17 @@ Animation after the hand is over?
 				
 Future Ideas
 
-- Magic style cards
+Taking Steampunk theme 3 steps too far.
+	Game is a kiosk at a bar or something that you sit and play.  The console to the right runs the game whereas the machinery is what makes the whole thing work.  When you take damage it lets out that many units of steam.
+	The cards are completely customizable (with everything having a cost to put it together) with gears that represent the numerical values of the cards and "resistors" that represent special abilities. (+1 attack, etc)
+
+
 - Races
 	- Humans cheaper but don't get as strong but have more abilities etc
 	- non humans have bigger numbers but not as special, etc.
 - Use the item system to make a database and an editor to add things to it.
 
 Order of things to do
-
--Method for drawing cards (add deck[0] to hand and remove deck[0])
 
 -Build the deck dynamically
 	- Right now it builds it randomly, need to implement it from the deck

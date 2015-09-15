@@ -11,11 +11,15 @@ public class Hand
     private int deckSize;
     private int numCardTypes;
 
-    private List<Vector2> deck;
-    private List<Card> hand;
+    public List<Vector2> deck;
+    public List<Card> hand;
 
     public Hand(int deckSize, int handSize, int numCardTypes, Card cardPrefab)
     {
+        if (hand == null)
+        {
+            hand = new List<Card>();
+        }
         this.deckSize = deckSize;
         this.handSize = handSize;
         this.numCardTypes = numCardTypes;

@@ -21,9 +21,16 @@ public class ButtonHandler : MonoBehaviour
     public void GoButton()
     {
         //gameController.Play();
-        multiController.CardsReady();
-
-
+        if (!multiController.goOff)
+        {
+            multiController.CardsReady();
+            multiController.goOff = true;
+        }
+        else
+        {
+            console.Display("Wait your damn turn!");
+            console.ClearButtons();
+        }
     }
 
     internal void StartGame()

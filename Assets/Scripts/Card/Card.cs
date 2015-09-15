@@ -10,7 +10,10 @@ public class Card : MonoBehaviour
     public string attackFlavor;
     public string defenseFlavor;
 
+
     [Header("Special Card Variables")]
+    public Specials offSpecial;
+    public Specials defSpecial;
     public int S2BaseAttack;
     public int S2PlusDefense;
 
@@ -20,7 +23,15 @@ public class Card : MonoBehaviour
     private Text attackFlavorText;
     private Text defenseFlavorText;
 
-
+    [HideInInspector]
+    public enum Specials
+    {
+        NONE,
+        AttackSteal,
+        DefenseSteal,
+        AttackPlusOne,
+        DefensePlusOne
+    }
     // Possible additions
     // value
     // Maybe collection/set number
@@ -46,11 +57,17 @@ public class Card : MonoBehaviour
         }
     }
 
-    public void BuildCard(int attack, int defense)
+    public void BuildCard(int attack, int defense, Specials offSpecial = Specials.NONE, Specials defSpecial = Specials.NONE)
     {
         this.attack = attack;
         attackText.text = attack.ToString();
         this.defense = defense;
         defenseText.text = defense.ToString();
+
+        if (offSpecial != Specials.NONE)
+            this.offSpecial = offSpecial;
+        if (defSpecial != Specials.NONE)
+            this.defSpecial = defSpecial;
     }
+
 }
