@@ -11,6 +11,7 @@ public class Hand
     private int deckSize;
     private int numCardTypes;
 
+
     public List<Vector2> deck;
     public List<Card> hand;
 
@@ -26,11 +27,16 @@ public class Hand
         this.cardPrefab = cardPrefab;
         handPanel = GameObject.Find("Hand");
 
+        var tempDeck = PlayerPrefsX.GetVector2Array("Deck");
+        this.deck = BuildDeck(tempDeck);
 
+        if (deck == null || deck[deckSize - 1] == Vector2.zero)
+        {
+            Debug.Log("Using random deck");
+            this.deck = BuildDeck(deckSize);
+        }
 
-        deck = BuildDeck(deckSize);
         hand = Deal(deck);
-        
     }
 
     private List<Vector2> BuildDeck(int deckSize)
@@ -57,9 +63,21 @@ public class Hand
     }
 
     // Overload method for when you can input your own deck of cards to be shuffled.
-    private List<Card> BuildDeck(List<Card> deck)
+    private List<Vector2> BuildDeck(Vector2[] deck)
     {
-        return new List<Card>();
+        var myDeck = new List<Vector2>();
+
+        for (int i = 0; i < deck.Length; i++)
+        {
+            myDeck.Add(deck[Random.Range(0, deck.Length)]);
+        }
+
+        //foreach (Vector2 vector in myDeck)
+        //{
+        //    Debug.Log(string.Format("x is {0}, y is {1}", vector.x, vector.y));
+        //}
+
+        return myDeck;
     }
 
     public List<Card> Deal(List<Vector2> deck)
@@ -71,13 +89,10 @@ public class Hand
             temp.Add(Draw(deck));
         }
         return temp;
-
     }
 
     public Card Draw(List<Vector2> deck)
     {
-        var temp = deck[0];
-
         var card = GameObject.Instantiate(cardPrefab);
         card.BuildCard((int)deck[0].x, (int)deck[0].y);
         card.transform.SetParent(handPanel.transform);
@@ -85,6 +100,4 @@ public class Hand
 
         return card;
     }
-
-
 }

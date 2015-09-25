@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System;
@@ -8,7 +9,8 @@ public class Play : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
     private bool occupied = false;
 
     public GameObject handPanel;
-
+    public Text AttText;
+    public Text DefText;
 
 
     public void OnDrop(PointerEventData eventData)
@@ -27,7 +29,21 @@ public class Play : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
 
         if (!occupied)
         {
+            //Debug.Log("Not Occupied");
             d.parentToReturnTo = this.transform;
+            if (d.GetComponent<Gear>() != null)
+            {
+                //Debug.Log("There's a gear!");
+                var gear = d.GetComponent<Gear>();
+                if (this.transform.name == "Attack Gear Spot")
+                {
+                    AttText.text = gear.strength.ToString();
+                }
+                else if (this.transform.name == "Defense Gear Spot")
+                {
+                    DefText.text = gear.strength.ToString();
+                }
+            }
         }
         else
         {
@@ -41,7 +57,7 @@ public class Play : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerE
         if (eventData.pointerDrag == null)                                  // if not dragging you can't do anything so return immediately
             return;
 
-        //Debug.Log("On Point Enter called");
+        //Debug.Log("On Pointer Enter called");
     }
 
     public void OnPointerExit(PointerEventData eventData)

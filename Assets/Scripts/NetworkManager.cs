@@ -33,13 +33,13 @@ public class NetworkManager : MonoBehaviour
     // if that fails make a room
     void OnConnectedToMaster()
     {
-        Debug.Log("Joined Lobby");
+        //Debug.Log("Joined Lobby");
         PhotonNetwork.JoinRandomRoom();
     }
 
     void OnPhotonRandomJoinFailed()
     {
-        Debug.Log("OnPhotonRandomJoinFailed");
+        //Debug.Log("OnPhotonRandomJoinFailed");
         PhotonNetwork.CreateRoom("Sannemer");
     }
 
@@ -61,13 +61,13 @@ public class NetworkManager : MonoBehaviour
         {
             if (room.playerCount == 1)
             {
-                Debug.Log("Waiting for other player");
+                //Debug.Log("Waiting for other player");
                 console.Display("Waiting for other player");
             }
 
             if (room.playerCount == 2)
             {
-                Debug.Log("Everyone is seated, press the button to begin");
+                //Debug.Log("Everyone is seated, press the button to begin");
                 console.Display("Everyone is seated press the button to begin", new List<string>() { "Play" });
                 console.buttons[0].onClick.AddListener(() => buttonHandler.StartMulti());
                 GameReady = true;

@@ -106,7 +106,6 @@ public class MultiController : MonoBehaviour
                 {
                     photonView.RPC("Play", PhotonTargets.All);
                 }
-                
             }
         }
 
@@ -120,7 +119,7 @@ public class MultiController : MonoBehaviour
         }
         if (!sent)
         {
-            print(amountReady);
+            //print(amountReady);
             if (amountReady == 2)
             {
                 sent = true;
@@ -268,6 +267,7 @@ public class MultiController : MonoBehaviour
 
         var hnd = hand.handPanel.GetComponentsInChildren<Card>();
 
+        // Clear out what's left in the hand if any
         foreach (Card card in hnd)
         {
             Destroy(card.gameObject);
@@ -277,6 +277,7 @@ public class MultiController : MonoBehaviour
 
         hand.hand = hand.Deal(hand.deck);
 
+        // If end of game
         if (round > 2)
         {
             if (myScore > oppScore)
