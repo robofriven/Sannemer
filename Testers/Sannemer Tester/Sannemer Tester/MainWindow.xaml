@@ -1,0 +1,141 @@
+﻿<Window x:Class="Sannemer_Tester.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sannemer_Tester"
+        mc:Ignorable="d"
+        Title="Sannemer Hand Tester" Height="400" Width="525" Background="White" BorderBrush="Black">
+    <Grid Name="Grid" Margin="0,0,0,-73">
+        
+        <Label Content="Deck Number 1" HorizontalAlignment="Left" Margin="38,10,0,0" VerticalAlignment="Top" Width="152"/>
+        <TextBox x:Name="A1" Text ="{Binding attack[0]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="38,40,0,0" />
+        <TextBox x:Name="D1" Text ="{Binding defense[0]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="38,60,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A2" Text ="{Binding attack[1]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="63,40,0,0"/>
+        <TextBox x:Name="D2" Text ="{Binding defense[1]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="63,60,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A3" Text ="{Binding attack[2]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="88,40,0,0" />
+        <TextBox x:Name="D3" Text ="{Binding defense[2]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="88,60,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A4" Text ="{Binding attack[3]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="114,40,0,0"/>
+        <TextBox x:Name="D4" Text ="{Binding defense[3]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="114,60,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A5" Text ="{Binding attack[4]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="139,40,0,0" />
+        <TextBox x:Name="D5" Text ="{Binding defense[4]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="139,60,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A6" Text ="{Binding attack[5]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="164,40,0,0" />
+        <TextBox x:Name="D6" Text ="{Binding defense[5]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="164,60,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A7" Text ="{Binding attack[6]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="189,40,0,0" />
+        <TextBox x:Name="D7" Text ="{Binding defense[6]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="189,60,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A8" Text ="{Binding attack[7]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="215,40,0,0" />
+        <TextBox x:Name="D8" Text ="{Binding defense[7]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="215,60,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A9" Text ="{Binding attack[8]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="241,40,0,0" />
+        <TextBox x:Name="D9" Text ="{Binding defense[8]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="241,60,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A10" Text ="{Binding attack[9]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="266,40,0,0" />
+        <TextBox x:Name="D10" Text ="{Binding defense[9]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="266,60,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A11" Text ="{Binding attack[10]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="291,40,0,0" />
+        <TextBox x:Name="D11" Text ="{Binding defense[10]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="291,60,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A12" Text ="{Binding attack[11]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="317,40,0,0" />
+        <TextBox x:Name="D12" Text ="{Binding defense[11]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="317,60,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A13" Text ="{Binding attack[12]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="342,40,0,0" />
+        <TextBox x:Name="D13" Text ="{Binding defense[12]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="342,60,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A14" Text ="{Binding attack[13]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="367,40,0,0" />
+        <TextBox x:Name="D14" Text ="{Binding defense[13]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="367,60,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A15" Text ="{Binding attack[14]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="392,40,0,0" />
+        <TextBox x:Name="D15" Text ="{Binding defense[14]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="392,60,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A16" Text ="{Binding attack[15]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="38,86,0,0" />
+        <TextBox x:Name="D16" Text ="{Binding defense[15]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="38,106,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A17" Text ="{Binding attack[16]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="63,86,0,0" />
+        <TextBox x:Name="D17" Text ="{Binding defense[16]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="63,106,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A18" Text ="{Binding attack[17]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="88,86,0,0" />
+        <TextBox x:Name="D18" Text ="{Binding defense[17]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="88,106,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A19" Text ="{Binding attack[18]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="114,86,0,0" />
+        <TextBox x:Name="D19" Text ="{Binding defense[18]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="114,106,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A20" Text ="{Binding attack[19]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="139,86,0,0" />
+        <TextBox x:Name="D20" Text ="{Binding defense[19]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="139,106,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A21" Text ="{Binding attack[20]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="164,86,0,0" />
+        <TextBox x:Name="D21" Text ="{Binding defense[20]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="164,106,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A22" Text ="{Binding attack[21]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="189,86,0,0" />
+        <TextBox x:Name="D22" Text ="{Binding defense[21]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="189,106,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A23" Text ="{Binding attack[22]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="215,86,0,0" />
+        <TextBox x:Name="D23" Text ="{Binding defense[22]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="215,106,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A24" Text ="{Binding attack[23]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="241,86,0,0" />
+        <TextBox x:Name="D24" Text ="{Binding defense[23]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="241,106,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A25" Text ="{Binding attack[24]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="266,86,0,0" />
+        <TextBox x:Name="D25" Text ="{Binding defense[24]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="266,106,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A26" Text ="{Binding attack[25]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="291,86,0,0" />
+        <TextBox x:Name="D26" Text ="{Binding defense[25]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="291,106,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A27" Text ="{Binding attack[26]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="317,86,0,0" />
+        <TextBox x:Name="D27" Text ="{Binding defense[26]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="317,106,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A28" Text ="{Binding attack[27]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="342,86,0,0" />
+        <TextBox x:Name="D28" Text ="{Binding defense[27]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="342,106,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A29" Text ="{Binding attack[28]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="367,86,0,0" />
+        <TextBox x:Name="D29" Text ="{Binding defense[28]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="367,106,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A30" Text ="{Binding attack[29]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="392,86,0,0" />
+        <TextBox x:Name="D30" Text ="{Binding defense[29]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="392,106,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        
+        <Label Content="Deck Number 2" HorizontalAlignment="Left" Margin="38,137,0,0" VerticalAlignment="Top" Width="152"/>
+        <TextBox x:Name="A31" Text ="{Binding attack[30]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="38,167,0,0" />
+        <TextBox x:Name="D31" Text ="{Binding defense[30]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="38,187,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A32" Text ="{Binding attack[31]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="63,167,0,0" />
+        <TextBox x:Name="D32" Text ="{Binding defense[31]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="63,187,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A33" Text ="{Binding attack[32]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="88,167,0,0" />
+        <TextBox x:Name="D33" Text ="{Binding defense[32]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="88,187,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A34" Text ="{Binding attack[33]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="114,167,0,0"/>
+        <TextBox x:Name="D34" Text ="{Binding defense[33]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="114,187,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A35" Text ="{Binding attack[34]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="139,167,0,0"/>
+        <TextBox x:Name="D35" Text ="{Binding defense[34]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="139,187,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A36" Text ="{Binding attack[35]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="164,167,0,0"/>
+        <TextBox x:Name="D36" Text ="{Binding defense[35]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="164,187,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A37" Text ="{Binding attack[36]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="189,167,0,0"/>
+        <TextBox x:Name="D37" Text ="{Binding defense[36]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="189,187,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A38" Text ="{Binding attack[37]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="215,167,0,0"/>
+        <TextBox x:Name="D38" Text ="{Binding defense[37]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="215,187,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A39" Text ="{Binding attack[38]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="241,167,0,0"/>
+        <TextBox x:Name="D39" Text ="{Binding defense[38]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="241,187,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A40" Text ="{Binding attack[39]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="266,167,0,0"/>
+        <TextBox x:Name="D40" Text ="{Binding defense[39]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="266,187,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A41" Text ="{Binding attack[40]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="291,167,0,0"/>
+        <TextBox x:Name="D41" Text ="{Binding defense[40]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="291,187,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A42" Text ="{Binding attack[41]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="317,167,0,0"/>
+        <TextBox x:Name="D42" Text ="{Binding defense[41]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="317,187,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A43" Text ="{Binding attack[42]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="342,167,0,0"/>
+        <TextBox x:Name="D43" Text ="{Binding defense[42]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="342,187,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A44" Text ="{Binding attack[43]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="367,167,0,0"/>
+        <TextBox x:Name="D44" Text ="{Binding defense[43]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="367,187,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A45" Text ="{Binding attack[44]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="392,167,0,0"/>
+        <TextBox x:Name="D45" Text ="{Binding defense[44]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="392,187,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A46" Text ="{Binding attack[45]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="38,213,0,0"/>
+        <TextBox x:Name="D46" Text ="{Binding defense[45]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="38,233,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A47" Text ="{Binding attack[46]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="63,213,0,0"/>
+        <TextBox x:Name="D47" Text ="{Binding defense[46]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="63,233,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A48" Text ="{Binding attack[47]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="88,213,0,0"/>
+        <TextBox x:Name="D48" Text ="{Binding defense[47]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="88,233,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A49" Text ="{Binding attack[48]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="114,213,0,0"/>
+        <TextBox x:Name="D49" Text ="{Binding defense[48]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="114,233,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A50" Text ="{Binding attack[49]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="139,213,0,0"/>
+        <TextBox x:Name="D50" Text ="{Binding defense[49]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="139,233,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A51" Text ="{Binding attack[50]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="164,213,0,0"/>
+        <TextBox x:Name="D51" Text ="{Binding defense[50]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="164,233,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A52" Text ="{Binding attack[51]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="189,213,0,0"/>
+        <TextBox x:Name="D52" Text ="{Binding defense[51]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="189,233,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A53" Text ="{Binding attack[52]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="215,213,0,0"/>
+        <TextBox x:Name="D53" Text ="{Binding defense[52]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="215,233,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A54" Text ="{Binding attack[53]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="241,213,0,0"/>
+        <TextBox x:Name="D54" Text ="{Binding defense[53]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="241,233,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A55" Text ="{Binding attack[54]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="266,213,0,0"/>
+        <TextBox x:Name="D55" Text ="{Binding defense[54]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="266,233,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A56" Text ="{Binding attack[55]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="291,213,0,0"/>
+        <TextBox x:Name="D56" Text ="{Binding defense[55]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="291,233,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A57" Text ="{Binding attack[56]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="317,213,0,0"/>
+        <TextBox x:Name="D57" Text ="{Binding defense[56]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="317,233,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A58" Text ="{Binding attack[57]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="342,213,0,0"/>
+        <TextBox x:Name="D58" Text ="{Binding defense[57]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="342,233,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A59" Text ="{Binding attack[58]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="367,213,0,0"/>
+        <TextBox x:Name="D59" Text ="{Binding defense[58]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="367,233,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBox x:Name="A60" Text ="{Binding attack[59]}" HorizontalAlignment="Left" Height="20" Width="20" VerticalAlignment="Top" TextAlignment="Center" Margin="392,213,0,0"/>
+        <TextBox x:Name="D60" Text ="{Binding defense[59]}" HorizontalAlignment="Left" Height="20" Width="20" Margin="392,233,0,0" VerticalAlignment="Top" TextAlignment="Center"/>
+        
+        <Button x:Name="Go" Content="Go!" HorizontalAlignment="Left" Margin="237,313,0,0" VerticalAlignment="Top" Width="75" Click="Go_Click"/>
+        <Button x:Name="Clear" Content="Clear" HorizontalAlignment="Left" Margin="317,313,0,0" VerticalAlignment="Top" Width="75" Click="Clear_Click"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="93,310,0,0" Text="1000000" VerticalAlignment="Top" Width="120" Cursor="IBeam"/>
+        <Label Content="Number of games to run" HorizontalAlignment="Left" Margin="93,284,0,0" VerticalAlignment="Top" Width="142"/>
+
+    </Grid>
+</Window>
